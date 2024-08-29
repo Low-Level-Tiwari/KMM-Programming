@@ -1,0 +1,24 @@
+boxtype si64 getElement(addr,ui32,ui32,ui32);
+box si64 getElement(addr arr, ui32 i, ui32 j, ui32 n)
+	i <- i*n + j ;
+	output <- valueAtWithIndex(arr, si64, i);
+endbox
+
+boxtype ui64 greater(addr, si64, ui32, ui32);
+box ui64 greater(addr arr, si64 key, ui32 m, ui32 n)
+	si64 i;
+	ui32 j;
+	si64 elem;
+	i <- m-1;
+	j <- 0;
+	output <- 0;
+	while i>=0 and j<n
+		elem <- getElement(arr,i,j,n);
+		if elem <= key
+			j <- j+1;
+		else 
+			output <- output + (n-j);
+			i <- i-1;
+		fi
+	endwhile
+endbox

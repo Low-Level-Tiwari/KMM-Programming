@@ -1,0 +1,21 @@
+interface try 
+	methodtype ui64 squ()
+endinterface
+
+aggregate num impl try
+	ui64 n;
+endaggregate
+
+build makeNum(ui64 a) for try
+	n = a;
+endbuild
+
+method ui64 squ() for num
+	output <- n*n;
+endmethod
+
+box ui64 use()
+	try n1;
+	n1 <- makeNum(4);
+	output <- @n1.squ();
+endbox
